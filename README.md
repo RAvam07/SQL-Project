@@ -1,4 +1,5 @@
-# SQL-Project/*
+# SQL-Project
+/*
 Stores database contains 8 tables
 Customers: customer DATABASE
 Employees: all employee information
