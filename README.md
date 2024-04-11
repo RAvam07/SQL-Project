@@ -1,40 +1,37 @@
 # SQL-Project
-/*
-Stores database contains 8 tables
-Customers: customer DATABASE
-Employees: all employee information
-Offices: sales office information
-OrderDetails: sales order line for each sales ORDER
-Payments: customers' payment record
-Products: a list of scale model cars
-productLines: a list of product line categories
-*/
 
-/*Question 1: Which products should we order more of or less of?
-Question 2: How should we tailor marketing and communication strategies to customer behaviors?
-Question 3: How much can we spend on acquiring new customers?
-*/
+#### Stores database contains 8 tables
+Customers: customer DATABASE  
+Employees: all employee information  
+Offices: sales office information  
+OrderDetails: sales order line for each sales ORDER  
+Payments: customers' payment record  
+Products: a list of scale model cars  
+ProductLines: a list of product line categories
 
+
+#### Question 1: Which products should we order more of or less of?
+#### Question 2: How should we tailor marketing and communication strategies to customer behaviors?
+#### Question 3: How much can we spend on acquiring new customers?
+
+```sql
 SELECT * 
  FROM orderdetails;
 
  SELECT *
  FROM products
  LIMIT 5;
-
-/*
-Select each table name as string
-*/
-
+```
+*Select each table name as string*
+```sql
 SELECT name AS table_name
 FROM sqlite_master
 WHERE type = 'table';
+```
 
-/*
-Select the numer of columns in each table
-*/
+*Select the numer of columns in each table*
 
-SELECT COUNT(*) AS number_of_attributes
+```sql SELECT COUNT(*) AS number_of_attributes
 FROM pragma_table_info('customers')
 UNION ALL
 SELECT COUNT(*) AS number_of_attributes
@@ -57,12 +54,11 @@ FROM pragma_table_info('productlines')
 UNION ALL
 SELECT COUNT(*) AS number_of_attributes
 FROM pragma_table_info('products');
+```
 
-/*
-Select the number of rows in each TABLE
-*/
+*Select the number of rows in each TABLE*
 
-SELECT COUNT(*) AS number_of_rows
+```sql SELECT COUNT(*) AS number_of_rows
 FROM customers
 UNION ALL
 SELECT COUNT(*) AS number_of_rows
@@ -85,12 +81,11 @@ FROM employees
 UNION ALL
 SELECT COUNT(*) AS number_of_rows
 FROM offices;
+```
 
-/*
-JOIN in 1 TABLE
-*/
+*JOIN in 1 TABLE*
 
-select 'customers' table_name, count(*) number_of_attributes,(select count(*)from customers ) number_of_rows from pragma_table_info('customers')
+```sql select 'customers' table_name, count(*) number_of_attributes,(select count(*)from customers ) number_of_rows from pragma_table_info('customers')
 UNION ALL
 select 'employees' table_name, count(*) number_of_attributes,(select count(*)from employees ) number_of_rows from pragma_table_info('employees')
 UNION ALL
@@ -103,30 +98,28 @@ UNION ALL
 select 'products' table_name, count(*) number_of_attributes,(select count(*)from products ) number_of_rows from pragma_table_info('products')
 UNION ALL
 select 'productlines' table_name, count(*) number_of_attributes,(select count(*)from productlines ) number_of_rows from pragma_table_info('productlines');
+```
 
-/*
- Which Products Should We Order More of or Less of?
- */
+### Which Products Should We Order More of or Less of?
  
-  
-/*
-here the low stock for each product is calculated using by a correlated subquery.
-It is rounded to hundred thlimeted top ten of products by low stock*/
+*here the low stock for each product is calculated using by a correlated subquery.
+It is rounded to hundred thlimeted top ten of products by low stock*
 
-/*чем больше ratio тем меньше на стоке складских запасов*/
+*higher ratio less inventory*
 
--- 1 option with JOIN
+*1 option with JOIN*
 
-SELECT p.productcode, p.productName, p.productLine, sum(o.quantityOrdered)/p.quantityInStock as lowstock
+```sql SELECT p.productcode, p.productName, p.productLine, sum(o.quantityOrdered)/p.quantityInStock as lowstock
 FROM products as p
 JOIN orderdetails as o
 ON p.productCode=o.productCode
 GROUP BY p.productcode
 ORDER BY lowstock DESC;
+```
 
--- 2 option with subquery
+*2 option with subquery*
 
-SELECT
+```sql SELECT
     productCode,
     ROUND((SELECT SUM(quantityOrdered) FROM orderdetails WHERE productCode = p.productCode) / p.quantityInStock, 2) AS lowStock
 FROM
@@ -135,12 +128,11 @@ FROM
 ORDER BY
     lowStock DESC
 LIMIT 10;
+```
 
-/*
-Calculate product performance. Quantityordered*priceEach=revenue (выручка). More revenue better for cashflow.
-*/
+*Calculate product performance. Quantityordered*priceEach=revenue (выручка). More revenue better for cashflow.*
  
- SELECT od.productCode, productName, productLine, sum(quantityordered*priceEach) as product_performance
+ ```sql SELECT od.productCode, productName, productLine, sum(quantityordered*priceEach) as product_performance
  FROM orderdetails as od
  JOIN products as p
  ON od.productCode=p.productCode
@@ -148,15 +140,14 @@ Calculate product performance. Quantityordered*priceEach=revenue (выручка
  ORDER BY
     product_performance DESC
 LIMIT 10;
+```
 
-/*
-Previuose queries combined using CTE(common table expression). We are displaying priority products for restocking. 
-То есть то, надо вытащить что продается больше всего и имеет меньше запасы.
-*/
+*Previuose queries combined using CTE(common table expression). We are displaying priority products for restocking. 
+То есть то, надо вытащить что продается больше всего и имеет меньше запасы.*
 
--- 1 option
+*1 option*
 
-WITH CTE_Lowstock as 
+```sql WITH CTE_Lowstock as 
 (
 SELECT p.productCode 
 FROM 
@@ -180,10 +171,11 @@ SELECT p.productCode, p.productName, productLine
 FROM products p
 WHERE p.productCode IN CTE_Lowstock and p.productCode IN CTE_performance
 LIMIT 10;
+```
 
--- 2nd option
+*2nd option*
 
-WITH 
+```sql WITH 
 tab1 as (
 select
 	p.productCode
@@ -227,16 +219,15 @@ WHERE
 	p.productCode IN tab1
 	AND p.productCode IN tab2
 	LIMIT 10;
+```
 
-/*
-How Should We Match Marketing and Communication Strategies to Customer Behavior?
+*How Should We Match Marketing and Communication Strategies to Customer Behavior?
 VIP customers bring in the most profit for the store.
-Less-engaged customers bring in less profit.
-*/
+Less-engaged customers bring in less profit.*
 
--- Joining products, orders and orderdetails
+*Joining products, orders and orderdetails*
 
-SELECT customerNumber, p.productCode, round(sum(quantityordered*(priceEach-buyPrice)),0) as profit
+```sql SELECT customerNumber, p.productCode, round(sum(quantityordered*(priceEach-buyPrice)),0) as profit
 FROM products as p
 JOIN orderdetails as od
 ON p.productCode=od.productCode
@@ -244,10 +235,11 @@ JOIN orders as o
 ON od.orderNumber=o.orderNumber
 GROUP BY customerNumber
 ORDER BY sum(quantityordered*(priceEach-buyPrice)) DESC;
+```
 
--- to find the top 5 VIP customers and their details
+*to find the top 5 VIP customers and their details*
 
-WITH CTE_top_customers as
+```sql WITH CTE_top_customers as
 (SELECT customerNumber, p.productCode, round(sum(quantityordered*(priceEach-buyPrice)),0) as profit
 FROM products as p
 JOIN orderdetails as od
@@ -260,10 +252,11 @@ LIMIT 5)
 SELECT contactLastName, contactFirstName, city, country, profit
 FROM customers as c
 JOIN CTE_top_customers as tpc ON c.customerNumber=tpc.customerNumber;
+```
 
--- to find the top 5 less-engaged customers and their details
+*to find the top 5 less-engaged customers and their details*
 
-WITH CTE_top_customers as
+```sql WITH CTE_top_customers as
 (SELECT customerNumber, p.productCode, round(sum(quantityordered*(priceEach-buyPrice)),0) as profit
 FROM products as p
 JOIN orderdetails as od
@@ -277,15 +270,15 @@ SELECT contactLastName, contactFirstName, city, country, profit
 FROM customers as c
 JOIN CTE_top_customers as tpc 
 ON c.customerNumber=tpc.customerNumber;
+```
 
- /*
- How Much Can We Spend on Acquiring New Customers?
-*/
+ *How Much Can We Spend on Acquiring New Customers?*
 
---  find the number of new customers arriving each month
--- ищем в процентном отношении сколько новых клиентов
+*find the number of new customers arriving each month*
+
+*ищем в процентном отношении сколько новых клиентов*
  
- WITH payment_with_year_month_table AS (
+ ```sql WITH payment_with_year_month_table AS (
   SELECT *,
          CAST(SUBSTRING(paymentDate, 1, 4) AS INTEGER) * 100 + CAST(SUBSTRING(paymentDate, 6, 7) AS INTEGER) AS year_month
   FROM payments
@@ -317,18 +310,17 @@ SELECT year_month,
        ROUND(number_of_new_customers * 100 / number_of_customers, 1) AS number_of_new_customers_props,
        ROUND(new_customer_total * 100 / total, 1) AS new_customers_total_props
 FROM new_customers_by_month_table;
+```
 
--- above we see that the number of new clients decreasing. since september 2004 there are no new customers.
+*Above we see that the number of new clients decreasing. since september 2004 there are no new customers.*
 
-/*
-to determine how much money we can spend aquiring new customers, we can compute the Customer Lifetime Value (LTV), 
+*To determine how much money we can spend aquiring new customers, we can compute the Customer Lifetime Value (LTV), 
 which represents the average amount of money a customer generates. LTV tells us how much profit average customer generates 
-during their lifetime. It means if we have 10 new customers next month they may generate USD 390 395.
-*/
+during their lifetime. It means if we have 10 new customers next month they may generate USD 390 395.*
 
--- here we compute the average of customer profits using CTE
+*here we compute the average of customer profits using CTE*
 
-WITH CTE_profit as
+```sql WITH CTE_profit as
 (
 SELECT od.productCode, sum((priceEach-buyPrice)*quantityOrdered) as profit, o.customerNumber
 FROM orderdetails as od
@@ -340,3 +332,4 @@ GROUP BY o.customerNumber
 ORDER BY profit)
 SELECT round(avg(profit), 0) as LTV
 FROM CTE_profit;
+```
