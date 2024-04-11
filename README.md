@@ -333,3 +333,14 @@ ORDER BY profit)
 SELECT round(avg(profit), 0) as LTV
 FROM CTE_profit;
 ```
+# CONCLUSION
+
+*1.	Which products should we order more of or less of? 
+Answer is: Classic models and Motorcycles should be ordered more to restock and keep up with sales volume.*
+
+*Classic cars and motorcycles are sold better:*
+
+| Column 1 | Column 2 | Column 3 | Column 4 | Column 5 | 
+|---|---|---||---|---|
+| Data 1 | Data 2 | Data 3 | Data 4 | Data 5 |
+
