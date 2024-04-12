@@ -379,12 +379,12 @@ Answer is: Classic models and Motorcycles should be ordered more to restock and 
 | 10 | S18_3232 | 1992 Ferrari 360 Spider red | Classic Cars |	
 
 *2.	 How should we tailor marketing and communication strategies to customer behaviors?
-Answer: we see how much profit comes from VIP and less engaged Customers.
-*
+Answer: we see how much profit comes from VIP and less engaged Customers.*
+
 *TOP 5 VIP Customers:*
 
 | No | contactLastName | contactFirstName | city | country | profit |
-|---|---|---|---|---| 
+|---|---|---|---|---|---|
 | 1 | Freyre | Diego | Madrid | Spain | 326520.0 |
 | 2 | Nelson | Susan | San Rafael | USA | 236769.0 |
 | 3 | Young | Jeff | NYC | USA | 72370.0
