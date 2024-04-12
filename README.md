@@ -352,3 +352,27 @@ Answer is: Classic models and Motorcycles should be ordered more to restock and 
 | 8 | S18_2238 | 1998 Chrysler Plymouth Prowler | Classic Cars | 142530.63 |
 | 9 | S18_1749 | 1917 Grand Touring Sedan | Vintage Cars | 140535.6 |
 | 10 | S12_2823 | 2002 Suzuki XREO | Motorcycles | 135767.03 |
+
+*Low stock ratio shows products with low inventory. As more ratio then less inventory:*
+
+| No | productCode | productName | productLine | lowstock | 
+|---|---|---|---|---|
+| 1 | S24_2000 | 1960 BSA Gold Star DBD34 | Motorcycles | 67|
+| 2 | S12_1099 | 1968 Ford Mustang | Classic Cars | 13 |
+| 3 | S32_4289 | 1968 Ford Phaeton Delux | Vintage Cars | 7 |
+| 4 | S32_1374 | 1997 BMW F650 ST | Motorcycles | 5 |
+| 5 | S72_3212 | Pont Yacht | Ships | 2 |
+
+*And here is combined dataset where we can see the priority for restocking. *
+
+| No | productCode | productName | productLine |
+| 1 | S10_1949 | 1952 Alpine Renault 1300 | Classic Cars |
+| 2 | S10_4698 | 2003 Harley-Davidson Eagle Drag Bike | Motorcycles |
+| 3 | S12_1199 | 1968 Ford Mustang | Classic Cars |
+| 4 | S12_1108 | 2001 Ferrari Enzo | Classic Cars |
+| 5 | S12_2823 | 2002 Suzuki XREO | Motorcycles |
+| 6 | S12_3891 | 1969 Ford Falcon | Classic Cars |
+| 7 | S18_1662 | 1980s Black Hawk Helicopter | Planes |
+| 8 | S18_1749 | 1917 Grand Touring Sedan | Classic Cars |
+| 9 | S18_2238 | 1998 Chrysler Plymouth Prowler | Classic Cars |
+| 10 | S18_3232 | 1992 Ferrari 360 Spider red | Classic Cars |	
