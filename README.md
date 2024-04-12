@@ -392,3 +392,20 @@ Answer: we see how much profit comes from VIP and less engaged Customers.*
 | 5 | Labrune | Janine | Nantes | France | 60875.0 |
 
 *5 Less engaged Customers:*
+
+| No | contactLastName | contactFirstName | city | country | profit |
+|---|---|---|---|---|---|
+| 1 | Young | Mary | Glendale | USA | 2611.0 |
+| 2 | Taylor | Leslie | Brickaven | USA | 6586.0 |
+| 3 | Ricotti | Franco | Milan | Italy | 9533.0 |
+| 4 | Schmitt | Carine | Nantes | France | 10064.0 |
+| 5 | Smith | Thomas | London | UK | 10868.0 |
+
+*3: How much can we spend on acquiring new customers?*
+
+*Answer: to determine how much money we can spend acquiring new customers, we can compute the Customer Lifetime Value (LTV), which represents the average amount of money a customer generates.
+LTV tells us how much profit average customer generates during their lifetime. It means if we have 10 new customers next month they may generate USD 390 395.*
+
+| No | LTV |
+|---|---|
+| 1 | 39040.0 |
