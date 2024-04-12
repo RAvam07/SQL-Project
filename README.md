@@ -366,6 +366,7 @@ Answer is: Classic models and Motorcycles should be ordered more to restock and 
 *And here is combined dataset where we can see the priority for restocking. *
 
 | No | productCode | productName | productLine |
+|---|---|---|---|
 | 1 | S10_1949 | 1952 Alpine Renault 1300 | Classic Cars |
 | 2 | S10_4698 | 2003 Harley-Davidson Eagle Drag Bike | Motorcycles |
 | 3 | S12_1199 | 1968 Ford Mustang | Classic Cars |
@@ -376,3 +377,18 @@ Answer is: Classic models and Motorcycles should be ordered more to restock and 
 | 8 | S18_1749 | 1917 Grand Touring Sedan | Classic Cars |
 | 9 | S18_2238 | 1998 Chrysler Plymouth Prowler | Classic Cars |
 | 10 | S18_3232 | 1992 Ferrari 360 Spider red | Classic Cars |	
+
+*2.	 How should we tailor marketing and communication strategies to customer behaviors?
+Answer: we see how much profit comes from VIP and less engaged Customers.
+*
+*TOP 5 VIP Customers:*
+
+| No | contactLastName | contactFirstName | city | country | profit |
+|---|---|---|---|---| 
+| 1 | Freyre | Diego | Madrid | Spain | 326520.0 |
+| 2 | Nelson | Susan | San Rafael | USA | 236769.0 |
+| 3 | Young | Jeff | NYC | USA | 72370.0
+| 4 | Ferguson | Peter | Melbourn | Australia | 70311.0 |
+| 5 | Labrune | Janine | Nantes | France | 60875.0 |
+
+*5 Less engaged Customers:*
