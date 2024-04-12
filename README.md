@@ -340,7 +340,15 @@ Answer is: Classic models and Motorcycles should be ordered more to restock and 
 
 *Classic cars and motorcycles are sold better:*
 
-| Column 1 | Column 2 | Column 3 | Column 4 | Column 5 | 
-|---|---|---||---|---|
-| Data 1 | Data 2 | Data 3 | Data 4 | Data 5 |
-
+| No | productCode | productName | productLine | product_performance | 
+|---|---|---|---|---|
+| 1 | S18_3232 | 1992 Ferrari 360 Spider red | Classic Cars | 276839.98 |
+| 2 | S12_1108 | 2001 Ferrari Enzo | Classic Cars | 190755.86 |
+| 3 | S10_1949 | 1952 Alpine Renault 1300 | Classic Cars | 190017.96 |
+| 4 | S10_4698 | 2003 Harley-Davidson Eagle Drag Bike | Motorcycles | 170696.0 |
+| 5 | S12_1099 | 1968 Ford Mustang | Classic Cars | 161531.48 |
+| 6 | S12_3891 | 1969 Ford Falcon | Classic Cars | 152543.02 |
+| 7 | S18_1662 | 1980s Black Hawk  Helicopter | Planes | 144959.91 |
+| 8 | S18_2238 | 1998 Chrysler Plymouth Prowler | Classic Cars | 142530.63 |
+| 9 | S18_1749 | 1917 Grand Touring Sedan | Vintage Cars | 140535.6 |
+| 10 | S12_2823 | 2002 Suzuki XREO | Motorcycles | 135767.03 |
